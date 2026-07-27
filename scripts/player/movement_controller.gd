@@ -52,9 +52,9 @@ func apply_friction(delta: float) -> void:
 	var speed := horizontal_velocity.length()
 	if speed < 0.1:
 		return
-	var control := max(speed, stop_speed)
-	var drop := control * friction * delta
-	var new_speed := max(speed - drop, 0.0) / speed
+	var control: float = max(speed, stop_speed)
+	var drop: float = control * friction * delta
+	var new_speed: float = max(speed - drop, 0.0) / speed
 	velocity.x *= new_speed
 	velocity.z *= new_speed
 
@@ -64,7 +64,7 @@ func accelerate(wish_dir: Vector3, wish_speed: float, accel: float, delta: float
 	var add_speed := wish_speed - current_speed
 	if add_speed <= 0.0:
 		return
-	var accel_speed := min(accel * delta * wish_speed, add_speed)
+	var accel_speed: float = min(accel * delta * wish_speed, add_speed)
 	velocity.x += accel_speed * wish_dir.x
 	velocity.z += accel_speed * wish_dir.z
 
@@ -75,6 +75,6 @@ func air_accelerate(wish_dir: Vector3, wish_speed: float, accel: float, delta: f
 	var add_speed := capped_speed - current_speed
 	if add_speed <= 0.0:
 		return
-	var accel_speed := min(accel * capped_speed * delta, add_speed)
+	var accel_speed: float = min(accel * capped_speed * delta, add_speed)
 	velocity.x += accel_speed * wish_dir.x
 	velocity.z += accel_speed * wish_dir.z
